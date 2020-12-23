@@ -14,7 +14,8 @@ jobs:
     steps:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
-      with:
-        path: ./src/github.com/${{ github.repository }}
+    - name: Copy workspace inside GOPATH
+      run: |
+        cp -r . $GOPATH/src/
     - name: Runing Gauge Test
-      run: gauge run ./src/github.com/${{ github.repository }}/specs/
+      run: gauge run $GOPATH/src/gauge-selenium-go/specs/
