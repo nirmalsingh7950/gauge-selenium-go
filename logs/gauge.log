@@ -1,0 +1,25 @@
+15:29:44.641 Plugin go is already installed.
+15:29:44.641 Plugin html-report is already installed.
+15:29:45.092 Runner connection error: Runner with pid 31661 quit unexpectedly(exit status 1).
+15:29:45.092 Error while killing runner: os: process already finished
+15:29:45.092 Failed to start gauge API: Runner with pid 31661 quit unexpectedly(exit status 1).
+16:26:26.181 Plugin go is already installed.
+16:26:26.194 Plugin html-report is already installed.
+16:26:26.515 Runner connection error: Runner with pid 2840 quit unexpectedly(exit status 1).
+16:26:26.515 Error while killing runner: os: process already finished
+16:26:26.515 Failed to start gauge API: Runner with pid 2840 quit unexpectedly(exit status 1).
+16:26:29.351 Plugin go is already installed.
+16:26:29.351 Plugin html-report is already installed.
+16:26:29.359 Runner connection error: Runner with pid 2945 quit unexpectedly(exit status 1).
+16:26:29.359 Error while killing runner: os: process already finished
+16:26:29.360 Failed to start gauge API: Runner with pid 2945 quit unexpectedly(exit status 1).
+16:26:30.135 Plugin go is already installed.
+16:26:30.135 Plugin html-report is already installed.
+16:26:30.143 Runner connection error: Runner with pid 2995 quit unexpectedly(exit status 1).
+16:26:30.143 Error while killing runner: os: process already finished
+16:26:30.143 Failed to start gauge API: Runner with pid 2995 quit unexpectedly(exit status 1).
+16:26:31.007 Plugin go is already installed.
+16:26:31.007 Plugin html-report is already installed.
+16:26:31.015 Runner connection error: Runner with pid 3041 quit unexpectedly(exit status 1).
+16:26:31.016 Error while killing runner: os: process already finished
+16:26:31.016 Failed to start gauge API: Runner with pid 3041 quit unexpectedly(exit status 1).
