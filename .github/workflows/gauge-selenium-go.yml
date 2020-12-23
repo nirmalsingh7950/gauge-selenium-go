@@ -17,4 +17,4 @@ jobs:
       with:
         path: ./src/github.com/${{ github.repository }}
     - name: Runing Gauge Test
-      run: gauge run specs/
+      run: gauge run ./src/github.com/${{ github.repository }}/specs/
