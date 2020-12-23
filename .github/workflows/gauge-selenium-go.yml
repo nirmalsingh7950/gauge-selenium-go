@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Copy workspace inside GOPATH
       run: |
-        mkdir /home/nirmal/go/src/gauge-selenium-go
-        cp -r . /home/nirmal/go/src/gauge-selenium-go/
+        mkdir /home/nirmal/go/src/github.com/gauge-selenium-go
+        cp -r . /home/nirmal/go/src/github.com/gauge-selenium-go/
     - name: Runing Gauge Test
-      run: gauge run /home/nirmal/go/src/gauge-selenium-go/specs/
+      run: gauge run /home/nirmal/go/src/github.com/gauge-selenium-go/specs/
