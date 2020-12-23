@@ -19,4 +19,6 @@ jobs:
         mkdir /home/nirmal/go/src/github.com/gauge-selenium-go
         cp -r . /home/nirmal/go/src/github.com/gauge-selenium-go/
     - name: Runing Gauge Test
-      run: gauge run /home/nirmal/go/src/github.com/gauge-selenium-go/specs/
+      run: |
+        cd /home/nirmal/go/src/github.com/gauge-selenium-go/
+        gauge run specs/
