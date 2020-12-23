@@ -16,6 +16,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Copy workspace inside GOPATH
       run: |
-        cp -r . $GOPATH/src/
+        mkdir gauge-selenium-go
+        cp -r . $GOPATH/src/gauge-selenium-go/
     - name: Runing Gauge Test
       run: gauge run $GOPATH/src/gauge-selenium-go/specs/
