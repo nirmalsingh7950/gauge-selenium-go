@@ -1,0 +1,18 @@
+name: Gauge and Selenium collaboration in golang
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: self-hosted
+    steps:
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+    - name: Runing Gauge Test
+      run: gauge run specs/
