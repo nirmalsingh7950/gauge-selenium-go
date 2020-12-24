@@ -18,9 +18,9 @@ jobs:
       run: |
         mkdir /home/nirmal/go/src/github.com/gauge-selenium-go
         cp -r . /home/nirmal/go/src/github.com/gauge-selenium-go/
-    - name: gauge install xml-runner
+    - name: gauge install xml-report
       run: |
-        gauge install xml-runner
+        gauge install xml-report
     - name: Runing Gauge Test
       run: |
         cd /home/nirmal/go/src/github.com/gauge-selenium-go/
