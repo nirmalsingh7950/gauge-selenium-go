@@ -43,10 +43,13 @@ jobs:
         shell: sh
         run: |
           cp $GOPATH/github.com/${{ github.event.repository.name }}/reports/xml-report/result.xml result.xml
-        
+  Publish-Report:
+    name: Publish report
+    needs: Run-Test
+    runs-on: self-hosted
+    steps:
       - name: Publishing report
         uses: EnricoMi/publish-unit-test-result-action@v1.6
-        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           files: result.xml
