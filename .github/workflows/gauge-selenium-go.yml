@@ -20,3 +20,25 @@ jobs:
       run: |
         mkdir ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}
         cp -r . ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}
+        
+    - name: gauge install xml-report
+      run: |
+        cd ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}
+        gauge install xml-report
+        
+    - name: Runing Gauge Test
+      run: |
+        cd ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}
+        gauge run specs/
+        
+    - name: Copy xml report to github workspace
+      shell: sh
+      run: |
+        cp ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}/reports/xml-report/result.xml result.xml
+        
+    - name: Publishing report
+      uses: EnricoMi/publish-unit-test-result-action@v1.6
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        files: result.xml
