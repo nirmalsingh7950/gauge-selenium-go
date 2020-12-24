@@ -9,9 +9,9 @@ on:
     branches: [ master ]
 
 jobs:
-
-  test:
-    name: Test
+  
+  Setup:
+    name: job for initial setup.
     runs-on: self-hosted
     steps:
     - name: Check out code into the Go module directory
@@ -27,21 +27,27 @@ jobs:
         cd ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}/
         gauge install xml-report
         
-    - name: Runing Gauge Test
-      shell: sh
-      run: |
-        echo "gopath is $GOPATH"
-        cd ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}
-        gauge run specs
+  Run-Test:
+    needs: [Setup]
+    name: Job for Running tests
+    runs-on: self-hosted
+    
+    steps:
+      - name: Runing Gauge Test
+        shell: sh
+        run: |
+          echo "gopath is $GOPATH"
+          cd ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}
+          gauge run specs
         
-    - name: Copy xml report to github workspace
-      shell: sh
-      run: |
-        cp ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}/reports/xml-report/result.xml result.xml
+      - name: Copy xml report to github workspace
+        shell: sh
+        run: |
+          cp ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}/reports/xml-report/result.xml result.xml
         
-    - name: Publishing report
-      uses: EnricoMi/publish-unit-test-result-action@v1.6
-      if: always()
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        files: result.xml
+      - name: Publishing report
+        uses: EnricoMi/publish-unit-test-result-action@v1.6
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          files: result.xml
