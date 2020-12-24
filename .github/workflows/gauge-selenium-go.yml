@@ -1,7 +1,4 @@
 name: Gauge and Selenium collaboration in golang
-env:
-  GOPATH: /home/nirmal/go/src
-
 on:
   push:
     branches: [ master ]
@@ -17,17 +14,19 @@ jobs:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2
     - name: Copy workspace inside GOPATH
+      shell: sh
       run: |
-        mkdir ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}
-        cp -r . ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}/
+        mkdir $GOPATH/github.com/${{ github.event.repository.name }}
+        cp -r . $GOPATH/github.com/${{ github.event.repository.name }}/
         
     - name: gauge install xml-report
       shell: sh
       run: |
-        cd ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}/
+        cd $GOPATH/github.com/${{ github.event.repository.name }}/
         gauge install xml-report
         
   Run-Test:
+    if: always()
     needs: [Setup]
     name: Job for Running tests
     runs-on: self-hosted
@@ -37,13 +36,13 @@ jobs:
         shell: sh
         run: |
           echo "gopath is $GOPATH"
-          cd ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}
+          cd $GOPATH/github.com/${{ github.event.repository.name }}
           gauge run specs
         
       - name: Copy xml report to github workspace
         shell: sh
         run: |
-          cp ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}/reports/xml-report/result.xml result.xml
+          cp $GOPATH/github.com/${{ github.event.repository.name }}/reports/xml-report/result.xml result.xml
         
       - name: Publishing report
         uses: EnricoMi/publish-unit-test-result-action@v1.6
