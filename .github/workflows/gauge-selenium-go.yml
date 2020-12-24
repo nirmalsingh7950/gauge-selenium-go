@@ -36,4 +36,4 @@ jobs:
       if: always()
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        files: /home/nirmal/go/src/github.com/gauge-selenium-go/reports/xml-report
+        files: /home/nirmal/go/src/github.com/gauge-selenium-go/reports/xml-report/result.xml
