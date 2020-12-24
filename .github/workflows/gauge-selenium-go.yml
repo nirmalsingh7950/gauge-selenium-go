@@ -19,16 +19,16 @@ jobs:
     - name: Copy workspace inside GOPATH
       run: |
         mkdir ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}
-        cp -r . ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}
+        cp -r . ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}/
         
     - name: gauge install xml-report
       run: |
-        cd ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}
+        cd ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}/
         gauge install xml-report
         
     - name: Runing Gauge Test
       run: |
-        cd ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}
+        cd ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}/
         gauge run specs/
         
     - name: Copy xml report to github workspace
