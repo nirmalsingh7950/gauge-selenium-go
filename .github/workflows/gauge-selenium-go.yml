@@ -18,7 +18,21 @@ jobs:
       run: |
         mkdir /home/nirmal/go/src/github.com/gauge-selenium-go
         cp -r . /home/nirmal/go/src/github.com/gauge-selenium-go/
+    - name: gauge install xml-runner
+      run: |
+        gauge install xml-runner
     - name: Runing Gauge Test
       run: |
         cd /home/nirmal/go/src/github.com/gauge-selenium-go/
         gauge run specs/
+    - name: Print present working directory
+      shell: sh
+      run: |
+        echo -e "\n PWD: \n"
+        pwd
+    - name: Publishing report
+      uses: EnricoMi/publish-unit-test-result-action@v1.6
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        files: /home/nirmal/go/src/github.com/gauge-selenium-go/reports/xml-report/result.xml
