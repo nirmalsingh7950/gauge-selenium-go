@@ -20,6 +20,7 @@ jobs:
         cp -r . /home/nirmal/go/src/github.com/gauge-selenium-go/
     - name: gauge install xml-report
       run: |
+        cd /home/nirmal/go/src/github.com/gauge-selenium-go/
         gauge install xml-report
     - name: Runing Gauge Test
       run: |
