@@ -22,11 +22,13 @@ jobs:
         cp -r . ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}/
         
     - name: gauge install xml-report
+      shell: sh
       run: |
         cd ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}/
         gauge install xml-report
         
     - name: Runing Gauge Test
+      shell: sh
       run: |
         cd ${{ env.GOPATH }}/github.com/${{ github.event.repository.name }}/
         gauge run specs/
