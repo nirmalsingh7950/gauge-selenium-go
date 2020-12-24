@@ -1,6 +1,6 @@
 name: Gauge and Selenium collaboration in golang
 env:
-  GOPATH: /home/nirmal/go/src/
+  GOPATH: /home/nirmal/go/src
 
 on:
   push:
