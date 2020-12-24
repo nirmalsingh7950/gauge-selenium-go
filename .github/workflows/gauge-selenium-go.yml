@@ -16,16 +16,16 @@ jobs:
     - name: Copy workspace inside GOPATH
       shell: sh
       run: |
-        mkdir $GOPATH/github.com/${{ github.event.repository.name }}
-        cp -r . $GOPATH/github.com/${{ github.event.repository.name }}/
+        mkdir $GOPATH/src/github.com/${{ github.event.repository.name }}
+        cp -r . $GOPATH/src/github.com/${{ github.event.repository.name }}/
         
     - name: gauge install xml-report
       shell: sh
       run: |
-        cd $GOPATH/github.com/${{ github.event.repository.name }}/
+        cd $GOPATH/src/github.com/${{ github.event.repository.name }}/
         gauge install xml-report
         
-  Run-Test:
+  Test:
     if: always()
     needs: [Setup]
     name: Job for Running tests
@@ -36,16 +36,16 @@ jobs:
         shell: sh
         run: |
           echo "gopath is $GOPATH"
-          cd $GOPATH/github.com/${{ github.event.repository.name }}
+          cd $GOPATH/src/github.com/${{ github.event.repository.name }}
           gauge run specs
         
       - name: Copy xml report to github workspace
         shell: sh
         run: |
-          cp $GOPATH/github.com/${{ github.event.repository.name }}/reports/xml-report/result.xml result.xml
-  Publish-Report:
-    name: Publish report
-    needs: Run-Test
+          cp $GOPATH/src/github.com/${{ github.event.repository.name }}/reports/xml-report/result.xml result.xml
+  Publish-Test-Report:
+    name: Publish Test report
+    needs: Test
     runs-on: self-hosted
     steps:
       - name: Publishing report
