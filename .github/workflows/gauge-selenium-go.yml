@@ -1,9 +1,9 @@
 name: Gauge and Selenium collaboration in golang
 on:
   push:
-    branches: [ master ]
+    branches: [ dev ]
   pull_request:
-    branches: [ master ]
+    branches: [ dev ]
 
 jobs:
   
@@ -16,7 +16,13 @@ jobs:
     - name: Copy workspace inside GOPATH
       shell: sh
       run: |
-        mkdir $GOPATH/src/github.com/${{ github.event.repository.name }}
+        if [ -d $GOPATH/src/github.com/${{ github.event.repository.name }} ];
+        then
+          echo "Directory present"
+        else
+          echo "Directory Not present" 
+          mkdir $GOPATH/src/github.com/${{ github.event.repository.name }}
+        fi
         cp -r . $GOPATH/src/github.com/${{ github.event.repository.name }}/
         
     - name: gauge install xml-report
@@ -44,6 +50,7 @@ jobs:
         run: |
           cp $GOPATH/src/github.com/${{ github.event.repository.name }}/reports/xml-report/result.xml result.xml
   Publish-Test-Report:
+    if: always()
     name: Publish Test report
     needs: Test
     runs-on: self-hosted
