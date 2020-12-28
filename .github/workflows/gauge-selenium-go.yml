@@ -50,6 +50,7 @@ jobs:
         run: |
           cp $GOPATH/src/github.com/${{ github.event.repository.name }}/reports/xml-report/result.xml result.xml
   Publish-Test-Report:
+    if: always()
     name: Publish Test report
     needs: Test
     runs-on: self-hosted
